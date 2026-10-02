@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XOR Gate Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header>
+        <h1>Logic Gates</h1>
+    </header>
+
+    <!-- =========================
+         MAIN CONTAINER
+    ========================== -->
+    <div class="container">
+
+        <!-- =========================
+             NAVIGATION
+        ========================== -->
+        <nav>
+            <a href="index.html">Course</a>
+            <a href="project.html">Project</a>
+            <a href="concept.html">Concepts</a>
+            <a href="database.html">Database</a>
+            <a href="doc.html">Documentation</a>
+            <a href="dev.html">Dev Team</a>
+            <a href="animation.html">Animation</a>
+        </nav>
+
+        <!-- =========================
+             MAIN CONTENT AREA
+        ========================== -->
+        <main>
+            <div class="animation-section">
+                
+                <h2>Exclusive OR (XOR) Gate Simulator</h2>
+
+                <!-- GATE DISPLAY & CONTROLS -->
+                <div class="gate-image-container">
+                    <img id="gateImg" src="xor00.png" alt="XOR Gate 0 0[cite: 10]">
+                </div>
+
+                <div class="gate-buttons">
+                    <button type="button" onclick="setXorGate('0', '0', 'xor00.png')">0 XOR 0[cite: 10]</button>
+                    <button type="button" onclick="setXorGate('0', '1', 'xor01.png')">0 XOR 1[cite: 11]</button>
+                    <button type="button" onclick="setXorGate('1', '0', 'xor10.png')">1 XOR 0[cite: 12]</button>
+                    <button type="button" onclick="setXorGate('1', '1', 'xor11.png')">1 XOR 1[cite: 13]</button>
+                </div>
+
+                <p class="gate-result">
+                    Output: <span id="gateOutput">0[cite: 10]</span>
+                </p>
+
+            </div>
+        </main>
+
+        <!-- RIGHT SPACER TO CENTER CONTENT -->
+        <div class="right-space"></div>
+
+    </div>
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer>
+        <p><a href="project.html">Back to Home</a></p>
+        <p>@ Powered by UB</p>
+    </footer>
+
+    <!-- =========================
+         GATE INTERACTIVE SCRIPT
+    ========================== -->
+    <script>
+        function setXorGate(inputA, inputB, imgSrc) {
+            document.getElementById('gateImg').src = imgSrc;
+            
+            // XOR logic: output is 1 if inputs are different, 0 if they are the same
+            let result = (inputA !== inputB) ? '1' : '0';
+            document.getElementById('gateOutput').innerText = result;
+        }
+    </script>
+
+</body>
+</html>
