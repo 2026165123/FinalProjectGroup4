@@ -310,6 +310,17 @@ body {
   box-shadow: 0 0 8px rgba(72, 202, 228, 0.8);
 }
 
+/* Ensure gate controls remain interactive above SVG layers */
+.gate-controls {
+  position: relative;
+  z-index: 10;
+}
+
+.bit-btn {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
 /* =========================================================
    FOOTER
    ========================================================= */
