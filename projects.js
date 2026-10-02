@@ -1,6 +1,8 @@
 /* =========================================================
    1. LOGIC GATES & FLIP-FLOP ENGINE
    ========================================================= */
+
+// State tracking for all interactive circuits
 const gates = {
   and: { a: 0, b: 0, q: 0 },
   or:  { a: 0, b: 0, q: 0 },
@@ -9,19 +11,25 @@ const gates = {
   ff:  { a: 0, b: 0, q: 0 } // Upper (a) sets to 1, Lower (b) sets to 0
 };
 
+/**
+ * Toggle gate input bit when clicking buttons
+ * @param {string} gateKey - 'and', 'or', 'xor', 'not', or 'ff'
+ * @param {string} inputPin - 'a' or 'b'
+ */
 function toggleGate(gateKey, inputPin) {
   const gate = gates[gateKey];
-  
-  // Toggle input bit 0 <-> 1
+  if (!gate) return;
+
+  // Toggle input value (0 <-> 1)
   gate[inputPin] = gate[inputPin] === 0 ? 1 : 0;
 
-  // Logic Gate Outputs
+  // Evaluate basic logic gate outputs
   if (gateKey === 'and') gate.q = gate.a & gate.b;
   if (gateKey === 'or')  gate.q = gate.a | gate.b;
   if (gateKey === 'xor') gate.q = gate.a ^ gate.b;
   if (gateKey === 'not') gate.q = gate.a === 0 ? 1 : 0;
-  
-  // Flip-Flop Circuit Logic (OR + NOT + AND Feedback Circuit)
+
+  // Evaluate Brookshear Flip-Flop logic
   if (gateKey === 'ff') {
     const inputA = gate.a; // Upper Input
     const inputB = gate.b; // Lower Input
@@ -34,31 +42,57 @@ function toggleGate(gateKey, inputPin) {
     if (inputB === 1) {
       gate.q = 0;
     }
-    // When both A = 0 and B = 0, output remains unchanged (latched/stored state)
+    // If A = 0 and B = 0, state stays unchanged (Latched / Stored value)
   }
 
+  // Refresh visual elements (wires, text, buttons)
   updateSVG(gateKey);
 }
 
+/**
+ * Helper function to set SVG wire CSS active classes
+ */
+function setWire(wireId, state, isCyan = false) {
+  const el = document.getElementById(wireId);
+  if (!el) return;
+
+  if (state === 1) {
+    el.classList.add(isCyan ? 'cyan-active' : 'active');
+  } else {
+    el.classList.remove('active', 'cyan-active');
+  }
+}
+
+/**
+ * Updates SVG wires, button states, and label texts for a given circuit
+ */
 function updateSVG(key) {
   const g = gates[key];
+  if (!g) return;
 
   if (key === 'not') {
     setWire('not-wire-a', g.a);
     setWire('not-wire-out', g.q, true);
-    document.getElementById('not-lbl-a').textContent = g.a;
-    document.getElementById('not-lbl-out').textContent = g.q;
-    
+
+    const lblA = document.getElementById('not-lbl-a');
+    const lblOut = document.getElementById('not-lbl-out');
+    if (lblA) lblA.textContent = g.a;
+    if (lblOut) lblOut.textContent = g.q;
+
     const btnA = document.getElementById('not-btn-a');
-    btnA.textContent = g.a;
-    btnA.classList.toggle('active', g.a === 1);
+    if (btnA) {
+      btnA.textContent = g.a;
+      btnA.classList.toggle('active', g.a === 1);
+    }
 
     const valOut = document.getElementById('not-val-out');
-    valOut.textContent = g.q;
-    valOut.classList.toggle('active', g.q === 1);
+    if (valOut) {
+      valOut.textContent = g.q;
+      valOut.classList.toggle('active', g.q === 1);
+    }
 
   } else if (key === 'ff') {
-    // Determine intermediate signals for visual feedback
+    // Determine intermediate values inside flip flop circuit
     const notVal = g.b === 0 ? 1 : 0;
     const orVal = (g.a === 1 || g.q === 1) ? 1 : 0;
 
@@ -69,52 +103,67 @@ function updateSVG(key) {
     setWire('ff-wire-feedback', g.q, true);
     setWire('ff-wire-out', g.q, true);
 
-    document.getElementById('ff-lbl-a').textContent = g.a;
-    document.getElementById('ff-lbl-b').textContent = g.b;
-    document.getElementById('ff-lbl-out').textContent = g.q;
+    const lblA = document.getElementById('ff-lbl-a');
+    const lblB = document.getElementById('ff-lbl-b');
+    const lblOut = document.getElementById('ff-lbl-out');
+    if (lblA) lblA.textContent = g.a;
+    if (lblB) lblB.textContent = g.b;
+    if (lblOut) lblOut.textContent = g.q;
 
     const btnA = document.getElementById('ff-btn-a');
     const btnB = document.getElementById('ff-btn-b');
-    btnA.textContent = g.a;
-    btnB.textContent = g.b;
-    btnA.classList.toggle('active', g.a === 1);
-    btnB.classList.toggle('active', g.b === 1);
+    if (btnA) {
+      btnA.textContent = g.a;
+      btnA.classList.toggle('active', g.a === 1);
+    }
+    if (btnB) {
+      btnB.textContent = g.b;
+      btnB.classList.toggle('active', g.b === 1);
+    }
 
     const stateTxt = document.getElementById('ff-state-txt');
-    stateTxt.textContent = g.q;
-    stateTxt.className = `out-status ${g.q === 1 ? 'active' : ''}`;
+    if (stateTxt) {
+      stateTxt.textContent = g.q;
+      stateTxt.className = `out-status ${g.q === 1 ? 'active' : ''}`;
+    }
 
   } else {
-    // 2-Input Gates (AND, OR, XOR)
+    // Standard 2-input gates (AND, OR, XOR)
     setWire(`${key}-wire-a`, g.a);
     setWire(`${key}-wire-b`, g.b);
     setWire(`${key}-wire-out`, g.q, true);
 
-    document.getElementById(`${key}-lbl-a`).textContent = g.a;
-    document.getElementById(`${key}-lbl-b`).textContent = g.b;
-    document.getElementById(`${key}-lbl-out`).textContent = g.q;
+    const lblA = document.getElementById(`${key}-lbl-a`);
+    const lblB = document.getElementById(`${key}-lbl-b`);
+    const lblOut = document.getElementById(`${key}-lbl-out`);
+    if (lblA) lblA.textContent = g.a;
+    if (lblB) lblB.textContent = g.b;
+    if (lblOut) lblOut.textContent = g.q;
 
     const btnA = document.getElementById(`${key}-btn-a`);
     const btnB = document.getElementById(`${key}-btn-b`);
-    btnA.textContent = g.a;
-    btnB.textContent = g.b;
-    btnA.classList.toggle('active', g.a === 1);
-    btnB.classList.toggle('active', g.b === 1);
+    if (btnA) {
+      btnA.textContent = g.a;
+      btnA.classList.toggle('active', g.a === 1);
+    }
+    if (btnB) {
+      btnB.textContent = g.b;
+      btnB.classList.toggle('active', g.b === 1);
+    }
 
     const valOut = document.getElementById(`${key}-val-out`);
-    valOut.textContent = g.q;
-    valOut.classList.toggle('active', g.q === 1);
+    if (valOut) {
+      valOut.textContent = g.q;
+      valOut.classList.toggle('active', g.q === 1);
+    }
   }
 }
 
 /* =========================================================
    2. BMI CALCULATOR ENGINE
    ========================================================= */
-let currentUnit = 'metric';
 
 function switchUnit(unit) {
-  currentUnit = unit;
-  
   const metricBtn = document.getElementById('btn-metric');
   const imperialBtn = document.getElementById('btn-imperial');
   const metricInputs = document.getElementById('metric-inputs');
@@ -131,20 +180,20 @@ function switchUnit(unit) {
     imperialInputs.classList.remove('hidden');
     metricInputs.classList.add('hidden');
   }
-
-  document.getElementById('bmi-result').classList.add('hidden');
 }
 
 function calculateBMI(event) {
   event.preventDefault();
+
+  const isMetric = document.getElementById('btn-metric').classList.contains('active');
   let bmi = 0;
 
-  if (currentUnit === 'metric') {
+  if (isMetric) {
     const heightCm = parseFloat(document.getElementById('height-cm').value);
     const weightKg = parseFloat(document.getElementById('weight-kg').value);
 
     if (!heightCm || !weightKg || heightCm <= 0 || weightKg <= 0) {
-      alert('Please enter valid positive numbers for height and weight.');
+      alert('Please enter valid height and weight values.');
       return;
     }
 
@@ -158,55 +207,41 @@ function calculateBMI(event) {
     const totalInches = (heightFt * 12) + heightIn;
 
     if (!totalInches || !weightLbs || totalInches <= 0 || weightLbs <= 0) {
-      alert('Please enter valid positive numbers for height and weight.');
+      alert('Please enter valid height and weight values.');
       return;
     }
 
-    bmi = (weightLbs / (totalInches * totalInches)) * 703;
+    bmi = (703 * weightLbs) / (totalInches * totalInches);
   }
 
-  displayResult(bmi);
-}
-
-function displayResult(bmi) {
+  // Display results
   const resultBox = document.getElementById('bmi-result');
   const scoreVal = document.getElementById('score-val');
   const badge = document.getElementById('category-badge');
 
-  const roundedBMI = bmi.toFixed(1);
-  scoreVal.textContent = roundedBMI;
+  const formattedBMI = bmi.toFixed(1);
+  scoreVal.textContent = formattedBMI;
 
-  document.querySelectorAll('.range-zone').forEach(el => el.classList.remove('active-zone'));
-
-  let category = '';
-  let badgeClass = '';
-  let activeZoneClass = '';
+  badge.className = 'category-badge';
 
   if (bmi < 18.5) {
-    category = 'Underweight';
-    badgeClass = 'badge-underweight';
-    activeZoneClass = '.range-zone.underweight';
+    badge.textContent = 'Underweight';
+    badge.classList.add('underweight');
   } else if (bmi >= 18.5 && bmi < 25) {
-    category = 'Normal Weight';
-    badgeClass = 'badge-normal';
-    activeZoneClass = '.range-zone.normal';
+    badge.textContent = 'Normal weight';
+    badge.classList.add('normal');
   } else if (bmi >= 25 && bmi < 30) {
-    category = 'Overweight';
-    badgeClass = 'badge-overweight';
-    activeZoneClass = '.range-zone.overweight';
+    badge.textContent = 'Overweight';
+    badge.classList.add('overweight');
   } else {
-    category = 'Obese';
-    badgeClass = 'badge-obese';
-    activeZoneClass = '.range-zone.obese';
-  }
-
-  badge.textContent = category;
-  badge.className = 'category-badge ' + badgeClass;
-
-  const activeZone = document.querySelector(activeZoneClass);
-  if (activeZone) {
-    activeZone.classList.add('active-zone');
+    badge.textContent = 'Obese';
+    badge.classList.add('obese');
   }
 
   resultBox.classList.remove('hidden');
 }
+
+/* Initialize all diagrams when DOM loads */
+document.addEventListener('DOMContentLoaded', () => {
+  Object.keys(gates).forEach(key => updateSVG(key));
+});
