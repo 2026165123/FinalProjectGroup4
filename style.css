@@ -1,0 +1,208 @@
+/* =========================================================
+   GLOBAL STYLES & COLOR PALETTE
+   ========================================================= */
+:root {
+  --bg-dark: #0b132b;          /* Midnight Blue */
+  --bg-card: #1c2541;          /* Royal Dark Navy */
+  --bg-card-hover: #232f54;    /* Lighter Navy for Hover */
+  --text-main: #ffffff;        /* Pure White for high readability */
+  --text-muted: #b0c4de;       /* Soft Light Blue-Gray */
+  
+  /* Accent Colors */
+  --accent-pink: #ff758f;      /* Coral Pink / Soft Rose */
+  --accent-purple: #e056fd;    /* Radiant Magenta Accent */
+  --accent-cyan: #48cae4;      /* High-Tech Cyan */
+  --border-glow: rgba(224, 86, 253, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  line-height: 1.6;
+  padding-top: 80px; /* Offset for fixed navbar */
+}
+
+/* =========================================================
+   NAVIGATION BAR
+   ========================================================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(11, 19, 43, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--accent-purple);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.navbar .logo span {
+  color: var(--accent-pink);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+  color: var(--text-main);
+  background: rgba(224, 86, 253, 0.15);
+  box-shadow: 0 0 10px rgba(224, 86, 253, 0.3);
+}
+
+/* =========================================================
+   HERO BANNER
+   ========================================================= */
+.hero {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background: linear-gradient(180deg, rgba(28, 37, 65, 0.6) 0%, rgba(11, 19, 43, 1) 100%);
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: var(--text-main);
+}
+
+.hero h1 span {
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(224, 86, 253, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(224, 86, 253, 0.6);
+}
+
+/* =========================================================
+   CONTENT SECTIONS & CARDS GRID
+   ========================================================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  border-left: 4px solid var(--accent-pink);
+  padding-left: 15px;
+  color: var(--text-main);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 12px;
+  padding: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  background-color: var(--bg-card-hover);
+  transform: translateY(-5px);
+  border-color: var(--accent-pink);
+  box-shadow: 0 8px 25px rgba(255, 117, 143, 0.2);
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.card-link {
+  display: inline-block;
+  color: var(--accent-pink);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.card-link:hover {
+  color: var(--accent-purple);
+  text-decoration: underline;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 60px;
+}
