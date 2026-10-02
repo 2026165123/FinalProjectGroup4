@@ -129,27 +129,55 @@
           </div>
         </div>
 
-        <!-- SR FLIP-FLOP CIRCUIT -->
-        <div class="card gate-card full-span">
-          <h3>SR Flip-Flop Circuit</h3>
-          <div class="svg-display">
-            <svg id="svg-ff" viewBox="0 0 500 200" width="100%">
-              <line id="ff-wire-s" x1="30" y1="50" x2="150" y2="50" class="wire" />
-              <line id="ff-wire-r" x1="30" y1="150" x2="150" y2="150" class="wire" />
-              <rect x="150" y="30" width="200" height="140" rx="10" class="gate-body" />
-              <text x="250" y="80" class="gate-label">S-R LATCH</text>
-              <text x="170" y="58" class="pin-label">S</text>
-              <text x="170" y="158" class="pin-label">R</text>
-              <text x="325" y="58" class="pin-label">Q</text>
-              <text x="325" y="158" class="pin-label">Q'</text>
-              <line id="ff-wire-q" x1="350" y1="50" x2="450" y2="50" class="wire" />
-              <line id="ff-wire-qn" x1="350" y1="150" x2="450" y2="150" class="wire" />
-              <text id="ff-lbl-s" x="15" y="58" class="bit-text">0</text>
-              <text id="ff-lbl-r" x="15" y="158" class="bit-text">0</text>
-              <text id="ff-lbl-q" x="465" y="58" class="bit-text">0</text>
-              <text id="ff-lbl-qn" x="465" y="158" class="bit-text">1</text>
-            </svg>
-          </div>
+       <!-- BROOKSHEAR FLIP-FLOP CIRCUIT -->
+<div class="card gate-card full-span">
+  <h3>Interactive Flip-Flop Circuit</h3>
+  <div class="svg-display">
+    <svg id="svg-ff" viewBox="0 0 520 220" width="100%">
+      <!-- Wires -->
+      <line id="ff-wire-a" x1="30" y1="50" x2="160" y2="50" class="wire" />
+      <line id="ff-wire-b" x1="30" y1="170" x2="80" y2="170" class="wire" />
+      <line id="ff-wire-not-out" x1="160" y1="170" x2="280" y2="170" class="wire" />
+      <line id="ff-wire-or-out" x1="230" y1="65" x2="280" y2="65" class="wire" />
+      
+      <!-- Feedback wire from AND output to OR input -->
+      <path id="ff-wire-feedback" d="M 370 150 L 400 150 L 400 110 L 130 110 L 130 80 L 160 80" class="wire" fill="none" />
+      
+      <!-- Final Output wire -->
+      <line id="ff-wire-out" x1="370" y1="150" x2="460" y2="150" class="wire" />
+
+      <!-- OR Gate -->
+      <path d="M 160 35 Q 185 65 160 95 Q 210 95 230 65 Q 210 35 160 35 Z" class="gate-body" />
+      <text x="185" y="70" class="gate-label" font-size="12">OR</text>
+
+      <!-- NOT Gate -->
+      <polygon points="80,145 140,170 80,195" class="gate-body" />
+      <circle cx="147" cy="170" r="7" class="not-bubble" />
+      <text x="95" y="174" class="gate-label" font-size="10">NOT</text>
+
+      <!-- AND Gate -->
+      <path d="M 280 125 H 330 A 25 25 0 0 1 330 175 H 280 Z" class="gate-body" />
+      <text x="305" y="154" class="gate-label" font-size="12">AND</text>
+
+      <!-- Input/Output Bit Labels -->
+      <text id="ff-lbl-a" x="15" y="55" class="bit-text">0</text>
+      <text id="ff-lbl-b" x="15" y="175" class="bit-text">0</text>
+      <text id="ff-lbl-out" x="475" y="155" class="bit-text">0</text>
+    </svg>
+  </div>
+  
+  <div class="gate-controls">
+    <div class="control-pair">
+      <label>Upper Input (A):</label>
+      <button type="button" id="ff-btn-a" class="bit-btn" onclick="toggleGate('ff', 'a')">0</button>
+    </div>
+    <div class="control-pair">
+      <label>Lower Input (B):</label>
+      <button type="button" id="ff-btn-b" class="bit-btn" onclick="toggleGate('ff', 'b')">0</button>
+    </div>
+    <span class="out-label">Output State: <strong id="ff-state-txt" class="out-status">0</strong></span>
+  </div>
+</div>
           <div class="gate-controls">
             <div class="control-pair">
               <label>Set (S):</label>
