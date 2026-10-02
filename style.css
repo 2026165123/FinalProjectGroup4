@@ -163,6 +163,11 @@ body {
   overflow: hidden;
 }
 
+/* Full-width card modifier for Flip-Flop Circuit */
+.card.full-span {
+  grid-column: 1 / -1;
+}
+
 .card:hover {
   background-color: var(--bg-card-hover);
   transform: translateY(-5px);
@@ -202,6 +207,11 @@ body {
   padding: 12px;
   box-shadow: inset 0 0 8px rgba(0,0,0,0.15);
   margin-bottom: 15px;
+}
+
+/* Disable pointer events on SVG graphics so they never block button clicks */
+.svg-display svg {
+  pointer-events: none;
 }
 
 /* Default Off Wires & Shapes */
@@ -264,13 +274,23 @@ body {
 
 /* Card Controls */
 .gate-controls {
+  position: relative;
+  z-index: 20;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   background: #0b132b;
   padding: 10px 15px;
   border-radius: 25px;
   width: 100%;
+}
+
+.control-pair {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .bit-btn {
@@ -282,7 +302,10 @@ body {
   color: #ffffff;
   font-weight: 800;
   font-size: 1rem;
-  cursor: pointer;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 30;
   transition: all 0.2s ease;
 }
 
@@ -308,17 +331,6 @@ body {
   background: #48cae4;
   color: #0b132b;
   box-shadow: 0 0 8px rgba(72, 202, 228, 0.8);
-}
-
-/* Ensure gate controls remain interactive above SVG layers */
-.gate-controls {
-  position: relative;
-  z-index: 10;
-}
-
-.bit-btn {
-  cursor: pointer;
-  pointer-events: auto;
 }
 
 /* =========================================================
