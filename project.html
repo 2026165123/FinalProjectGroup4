@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects Hub | Group 07</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       NAVIGATION BAR
+       ========================================== -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">Group <span>07</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Course</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="concepts.html">Concepts</a></li>
+      <li><a href="database.html">Database</a></li>
+      <li><a href="documentation.html">Documentation</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==========================================
+       HERO BANNER
+       ========================================== -->
+  <header class="hero">
+    <h1>Interactive <span>Projects Hub</span></h1>
+    <p>Explore our group's interactive circuit schematics, BMI health calculator, and individual computer science demonstrations.</p>
+  </header>
+
+  <main class="container">
+
+    <!-- ==========================================
+         SECTION 1A: LOGIC GATES & FLIP-FLOP SUITE
+         ========================================== -->
+    <section class="section-block">
+      <h2 class="section-title">Logic Gates & SR Flip-Flop Circuit</h2>
+      <p class="section-desc">Toggle the binary inputs below to see live signals flow through SVG circuit schematics.</p>
+
+      <div class="card-grid">
+
+        <!-- AND GATE -->
+        <div class="card gate-card">
+          <h3>AND Gate</h3>
+          <div class="svg-display">
+            <svg id="svg-and" viewBox="0 0 400 180" width="100%">
+              <line id="and-wire-a" x1="30" y1="50" x2="150" y2="50" class="wire" />
+              <line id="and-wire-b" x1="30" y1="130" x2="150" y2="130" class="wire" />
+              <line id="and-wire-out" x1="280" y1="90" x2="360" y2="90" class="wire" />
+              <path d="M 140 25 H 200 A 65 65 0 0 1 200 155 H 140 Z" class="gate-body" />
+              <text x="180" y="100" class="gate-label">AND</text>
+              <text id="and-lbl-a" x="15" y="58" class="bit-text">0</text>
+              <text id="and-lbl-b" x="15" y="138" class="bit-text">0</text>
+              <text id="and-lbl-out" x="375" y="98" class="bit-text">0</text>
+            </svg>
+          </div>
+          <div class="gate-controls">
+            <button type="button" id="and-btn-a" class="bit-btn" onclick="toggleGate('and', 'a')">0</button>
+            <button type="button" id="and-btn-b" class="bit-btn" onclick="toggleGate('and', 'b')">0</button>
+            <span class="out-label">Output: <strong id="and-val-out" class="out-status">0</strong></span>
+          </div>
+        </div>
+
+        <!-- OR GATE -->
+        <div class="card gate-card">
+          <h3>OR Gate</h3>
+          <div class="svg-display">
+            <svg id="svg-or" viewBox="0 0 400 180" width="100%">
+              <line id="or-wire-a" x1="30" y1="50" x2="145" y2="50" class="wire" />
+              <line id="or-wire-b" x1="30" y1="130" x2="145" y2="130" class="wire" />
+              <line id="or-wire-out" x1="285" y1="90" x2="360" y2="90" class="wire" />
+              <path d="M 125 25 Q 165 90 125 155 Q 215 155 285 90 Q 215 25 125 25 Z" class="gate-body" />
+              <text x="180" y="100" class="gate-label">OR</text>
+              <text id="or-lbl-a" x="15" y="58" class="bit-text">0</text>
+              <text id="or-lbl-b" x="15" y="138" class="bit-text">0</text>
+              <text id="or-lbl-out" x="375" y="98" class="bit-text">0</text>
+            </svg>
+          </div>
+          <div class="gate-controls">
+            <button type="button" id="or-btn-a" class="bit-btn" onclick="toggleGate('or', 'a')">0</button>
+            <button type="button" id="or-btn-b" class="bit-btn" onclick="toggleGate('or', 'b')">0</button>
+            <span class="out-label">Output: <strong id="or-val-out" class="out-status">0</strong></span>
+          </div>
+        </div>
+
+        <!-- XOR GATE -->
+        <div class="card gate-card">
+          <h3>XOR Gate</h3>
+          <div class="svg-display">
+            <svg id="svg-xor" viewBox="0 0 400 180" width="100%">
+              <line id="xor-wire-a" x1="30" y1="50" x2="135" y2="50" class="wire" />
+              <line id="xor-wire-b" x1="30" y1="130" x2="135" y2="130" class="wire" />
+              <line id="xor-wire-out" x1="290" y1="90" x2="360" y2="90" class="wire" />
+              <path d="M 115 25 Q 150 90 115 155" class="xor-line" />
+              <path d="M 130 25 Q 165 90 130 155 Q 220 155 290 90 Q 220 25 130 25 Z" class="gate-body" />
+              <text x="190" y="100" class="gate-label">XOR</text>
+              <text id="xor-lbl-a" x="15" y="58" class="bit-text">0</text>
+              <text id="xor-lbl-b" x="15" y="138" class="bit-text">0</text>
+              <text id="xor-lbl-out" x="375" y="98" class="bit-text">0</text>
+            </svg>
+          </div>
+          <div class="gate-controls">
+            <button type="button" id="xor-btn-a" class="bit-btn" onclick="toggleGate('xor', 'a')">0</button>
+            <button type="button" id="xor-btn-b" class="bit-btn" onclick="toggleGate('xor', 'b')">0</button>
+            <span class="out-label">Output: <strong id="xor-val-out" class="out-status">0</strong></span>
+          </div>
+        </div>
+
+        <!-- NOT GATE -->
+        <div class="card gate-card">
+          <h3>NOT Gate (Inverter)</h3>
+          <div class="svg-display">
+            <svg id="svg-not" viewBox="0 0 400 180" width="100%">
+              <line id="not-wire-a" x1="30" y1="90" x2="140" y2="90" class="wire" />
+              <line id="not-wire-out" x1="280" y1="90" x2="360" y2="90" class="wire" />
+              <polygon points="140,35 260,90 140,145" class="gate-body" />
+              <circle cx="270" cy="90" r="10" class="not-bubble" />
+              <text x="180" y="98" class="gate-label">NOT</text>
+              <text id="not-lbl-a" x="15" y="98" class="bit-text">0</text>
+              <text id="not-lbl-out" x="375" y="98" class="bit-text">1</text>
+            </svg>
+          </div>
+          <div class="gate-controls">
+            <button type="button" id="not-btn-a" class="bit-btn" onclick="toggleGate('not', 'a')">0</button>
+            <span class="out-label">Output: <strong id="not-val-out" class="out-status active">1</strong></span>
+          </div>
+        </div>
+
+        <!-- SR FLIP-FLOP CIRCUIT -->
+        <div class="card gate-card full-span">
+          <h3>SR Flip-Flop Circuit</h3>
+          <div class="svg-display">
+            <svg id="svg-ff" viewBox="0 0 500 200" width="100%">
+              <line id="ff-wire-s" x1="30" y1="50" x2="150" y2="50" class="wire" />
+              <line id="ff-wire-r" x1="30" y1="150" x2="150" y2="150" class="wire" />
+              <rect x="150" y="30" width="200" height="140" rx="10" class="gate-body" />
+              <text x="250" y="80" class="gate-label">S-R LATCH</text>
+              <text x="170" y="58" class="pin-label">S</text>
+              <text x="170" y="158" class="pin-label">R</text>
+              <text x="325" y="58" class="pin-label">Q</text>
+              <text x="325" y="158" class="pin-label">Q'</text>
+              <line id="ff-wire-q" x1="350" y1="50" x2="450" y2="50" class="wire" />
+              <line id="ff-wire-qn" x1="350" y1="150" x2="450" y2="150" class="wire" />
+              <text id="ff-lbl-s" x="15" y="58" class="bit-text">0</text>
+              <text id="ff-lbl-r" x="15" y="158" class="bit-text">0</text>
+              <text id="ff-lbl-q" x="465" y="58" class="bit-text">0</text>
+              <text id="ff-lbl-qn" x="465" y="158" class="bit-text">1</text>
+            </svg>
+          </div>
+          <div class="gate-controls">
+            <div class="control-pair">
+              <label>Set (S):</label>
+              <button type="button" id="ff-btn-a" class="bit-btn" onclick="toggleGate('ff', 'a')">0</button>
+            </div>
+            <div class="control-pair">
+              <label>Reset (R):</label>
+              <button type="button" id="ff-btn-b" class="bit-btn" onclick="toggleGate('ff', 'b')">0</button>
+            </div>
+            <span class="out-label">State: <strong id="ff-state-txt" class="out-status">Hold (0)</strong></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 1B: BMI CALCULATOR
+         ========================================== -->
+    <section class="section-block">
+      <div class="bmi-wrapper">
+        <div class="bmi-card">
+          <div class="bmi-header">
+            <h2>Interactive <span>BMI Calculator</span></h2>
+            <p>Select your unit system and enter your height and weight.</p>
+          </div>
+
+          <div class="unit-toggle">
+            <button type="button" id="btn-metric" class="toggle-btn active" onclick="switchUnit('metric')">Metric (kg / cm)</button>
+            <button type="button" id="btn-imperial" class="toggle-btn" onclick="switchUnit('imperial')">Imperial (lbs / in)</button>
+          </div>
+
+          <form id="bmi-form" onsubmit="calculateBMI(event)">
+            <div id="metric-inputs" class="input-group">
+              <div class="field">
+                <label for="height-cm">Height (cm)</label>
+                <input type="number" id="height-cm" placeholder="e.g. 170" min="50" max="250" step="0.1">
+              </div>
+              <div class="field">
+                <label for="weight-kg">Weight (kg)</label>
+                <input type="number" id="weight-kg" placeholder="e.g. 68" min="10" max="300" step="0.1">
+              </div>
+            </div>
+
+            <div id="imperial-inputs" class="input-group hidden">
+              <div class="field">
+                <label for="height-ft">Height (Feet)</label>
+                <input type="number" id="height-ft" placeholder="e.g. 5" min="1" max="8">
+              </div>
+              <div class="field">
+                <label for="height-in">Height (Inches)</label>
+                <input type="number" id="height-in" placeholder="e.g. 7" min="0" max="11">
+              </div>
+              <div class="field">
+                <label for="weight-lbs">Weight (lbs)</label>
+                <input type="number" id="weight-lbs" placeholder="e.g. 150" min="20" max="700" step="0.1">
+              </div>
+            </div>
+
+            <button type="submit" class="calc-btn">Calculate BMI</button>
+          </form>
+
+          <div id="bmi-result" class="result-box hidden">
+            <div class="score-display">
+              <span class="score-label">Your BMI Score:</span>
+              <span id="score-val" class="score-number">--</span>
+            </div>
+            <div id="category-badge" class="category-badge">--</div>
+
+            <div class="range-meter">
+              <div class="range-zone underweight">Underweight (&lt;18.5)</div>
+              <div class="range-zone normal">Normal (18.5–24.9)</div>
+              <div class="range-zone overweight">Overweight (25–29.9)</div>
+              <div class="range-zone obese">Obese (&ge;30)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 1C: STUDENT SPECIALIZED PROJECTS
+         ========================================== -->
+    <section class="section-block">
+      <h2 class="section-title">Individual Chapter 1 Demonstrations</h2>
+      <p class="section-desc">Click on any team member's project card to explore their specialized interactive topic.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>Student 1: Cache Memory</h3>
+          <p>Interactive web application demonstrating cache levels, hits, misses, and CPU fetch cycles.</p>
+          <a href="student1.html" class="card-link">Launch Project &rarr;</a>
+        </div>
+
+        <div class="card">
+          <h3>Student 2: Number Conversions</h3>
+          <p>Interactive page demonstrating Hex to Binary conversion, ASCII encoding, and UNICODE text representation.</p>
+          <a href="student2.html" class="card-link">Launch Project &rarr;</a>
+        </div>
+
+        <div class="card">
+          <h3>Student 3: Binary Math</h3>
+          <p>Interactive web tool for binary notation, binary to base-10 conversion, and binary addition.</p>
+          <a href="student3.html" class="card-link">Launch Project &rarr;</a>
+        </div>
+
+        <div class="card">
+          <h3>Student 4: Computer Arithmetic</h3>
+          <p>Interactive app demonstrating Two's Complement, Excess Notation, Floating-Point, and Error-Correcting Codes.</p>
+          <a href="student4.html" class="card-link">Launch Project &rarr;</a>
+        </div>
+
+        <div class="card">
+          <h3>Student 5: Machine Language Emulator</h3>
+          <p>Interactive CPU simulator demonstrating opcode execution, registers, and program counter stepping.</p>
+          <a href="student5.html" class="card-link">Launch Project &rarr;</a>
+        </div>
+
+        <div class="card">
+          <h3>Student 6: CPU Load/Store Cycle</h3>
+          <p>Visualizing program instructions and data loading from main memory into CPU registers and saving back.</p>
+          <a href="student6.html" class="card-link">Launch Project &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 FoC Group 7 | University of Belize. All rights reserved.</p>
+  </footer>
+
+  <!-- Combined JavaScript File -->
+  <script src="js/projects.js"></script>
+</body>
+</html>
