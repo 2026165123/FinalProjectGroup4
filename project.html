@@ -133,36 +133,45 @@
 <div class="card gate-card full-span">
   <h3>Interactive Flip-Flop Circuit</h3>
   <div class="svg-display">
-    <svg id="svg-ff" viewBox="0 0 520 220" width="100%">
+    <svg id="svg-ff" viewBox="0 0 500 240" width="100%">
       <!-- Wires -->
-      <line id="ff-wire-a" x1="30" y1="50" x2="160" y2="50" class="wire" />
-      <line id="ff-wire-b" x1="30" y1="170" x2="80" y2="170" class="wire" />
-      <line id="ff-wire-not-out" x1="160" y1="170" x2="280" y2="170" class="wire" />
-      <line id="ff-wire-or-out" x1="230" y1="65" x2="280" y2="65" class="wire" />
+      <!-- Input A Wire -> OR Top Input -->
+      <line id="ff-wire-a" x1="40" y1="50" x2="150" y2="50" class="wire" />
       
-      <!-- Feedback wire from AND output to OR input -->
-      <path id="ff-wire-feedback" d="M 370 150 L 400 150 L 400 110 L 130 110 L 130 80 L 160 80" class="wire" fill="none" />
+      <!-- Input B Wire -> NOT Input -->
+      <line id="ff-wire-b" x1="40" y1="180" x2="90" y2="180" class="wire" />
       
-      <!-- Final Output wire -->
-      <line id="ff-wire-out" x1="370" y1="150" x2="460" y2="150" class="wire" />
+      <!-- NOT Output Wire -> AND Bottom Input -->
+      <line id="ff-wire-not-out" x1="165" y1="180" x2="270" y2="180" class="wire" />
+      
+      <!-- OR Output Wire -> Node to AND Top Input & Final Output -->
+      <path id="ff-wire-or-out" d="M 220 65 L 250 65 L 250 140 L 270 140" class="wire" fill="none" />
+      <line id="ff-wire-out" x1="220" y1="65" x2="440" y2="65" class="wire" />
 
-      <!-- OR Gate -->
-      <path d="M 160 35 Q 185 65 160 95 Q 210 95 230 65 Q 210 35 160 35 Z" class="gate-body" />
-      <text x="185" y="70" class="gate-label" font-size="12">OR</text>
+      <!-- Feedback Wire: AND Output -> OR Bottom Input -->
+      <path id="ff-wire-feedback" d="M 350 160 L 380 160 L 380 105 L 120 105 L 120 80 L 150 80" class="wire" fill="none" />
 
-      <!-- NOT Gate -->
-      <polygon points="80,145 140,170 80,195" class="gate-body" />
-      <circle cx="147" cy="170" r="7" class="not-bubble" />
-      <text x="95" y="174" class="gate-label" font-size="10">NOT</text>
+      <!-- Gate 1: OR Gate -->
+      <path d="M 150 35 Q 175 65 150 95 Q 200 95 220 65 Q 200 35 150 35 Z" class="gate-body" />
+      <text x="175" y="70" class="gate-label" font-size="12">OR</text>
 
-      <!-- AND Gate -->
-      <path d="M 280 125 H 330 A 25 25 0 0 1 330 175 H 280 Z" class="gate-body" />
-      <text x="305" y="154" class="gate-label" font-size="12">AND</text>
+      <!-- Gate 2: NOT Gate -->
+      <polygon points="90,155 150,180 90,205" class="gate-body" />
+      <circle cx="157" cy="180" r="7" class="not-bubble" />
+      <text x="105" y="184" class="gate-label" font-size="10">NOT</text>
 
-      <!-- Input/Output Bit Labels -->
-      <text id="ff-lbl-a" x="15" y="55" class="bit-text">0</text>
-      <text id="ff-lbl-b" x="15" y="175" class="bit-text">0</text>
-      <text id="ff-lbl-out" x="475" y="155" class="bit-text">0</text>
+      <!-- Gate 3: AND Gate -->
+      <path d="M 270 135 H 320 A 25 25 0 0 1 320 185 H 270 Z" class="gate-body" />
+      <text x="293" y="164" class="gate-label" font-size="12">AND</text>
+
+      <!-- Output Box Node -->
+      <rect x="390" y="40" width="70" height="50" rx="5" class="gate-body" />
+      <text x="425" y="70" class="gate-label" font-size="10" text-anchor="middle">OUTPUT</text>
+
+      <!-- Pin Bit Labels -->
+      <text id="ff-lbl-a" x="20" y="55" class="bit-text">0</text>
+      <text id="ff-lbl-b" x="20" y="185" class="bit-text">0</text>
+      <text id="ff-lbl-out" x="475" y="70" class="bit-text">0</text>
     </svg>
   </div>
   
@@ -178,19 +187,6 @@
     <span class="out-label">Output State: <strong id="ff-state-txt" class="out-status">0</strong></span>
   </div>
 </div>
-          <div class="gate-controls">
-            <div class="control-pair">
-              <label>Set (S):</label>
-              <button type="button" id="ff-btn-a" class="bit-btn" onclick="toggleGate('ff', 'a')">0</button>
-            </div>
-            <div class="control-pair">
-              <label>Reset (R):</label>
-              <button type="button" id="ff-btn-b" class="bit-btn" onclick="toggleGate('ff', 'b')">0</button>
-            </div>
-            <span class="out-label">State: <strong id="ff-state-txt" class="out-status">Hold (0)</strong></span>
-          </div>
-        </div>
-
       
     </section>
 
