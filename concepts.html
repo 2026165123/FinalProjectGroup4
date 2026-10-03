@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Concepts | Group 04</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">Group <span>04</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Course</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="concepts.html" class="active">Concepts</a></li>
+      <li><a href="database.html">Database</a></li>
+      <li><a href="documentation.html">Documentation</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <header class="hero">
+    <h1>Computer Science <span>Concepts & Video Hub</span></h1>
+    <p>Explore fundamental computer science concepts paired with video walkthroughs and interactive explanations.</p>
+  </header>
+
+  <main class="container">
+
+    <!-- SEARCH & CATEGORY FILTER -->
+    <div class="concepts-filter-bar">
+      <div class="search-box">
+        <input type="text" id="concept-search" placeholder="Search concepts or videos (e.g., Cache, Binary, CPU)..." onkeyup="filterConcepts()">
+      </div>
+      <div class="tag-filters">
+        <button type="button" class="tag-btn active" onclick="filterCategory('all', this)">All</button>
+        <button type="button" class="tag-btn" onclick="filterCategory('architecture', this)">Architecture</button>
+        <button type="button" class="tag-btn" onclick="filterCategory('binary', this)">Data & Binary</button>
+        <button type="button" class="tag-btn" onclick="filterCategory('memory', this)">Memory</button>
+      </div>
+    </div>
+
+    <!-- CONCEPTS & VIDEO GRID -->
+    <div class="card-grid" id="concepts-grid">
+
+      <!-- CONCEPT / VIDEO CARD 1 -->
+      <div class="card concept-card" data-category="architecture">
+        <div class="video-thumbnail-container">
+          <!-- Video Placeholder / Thumbnail -->
+          <div class="video-placeholder">
+            <div class="play-button">▶</div>
+            <span class="video-duration">03:45</span>
+          </div>
+        </div>
+
+        <div class="concept-header">
+          <span class="badge badge-purple">Architecture</span>
+          <h3>CPU & Machine Cycle Walkthrough</h3>
+        </div>
+        <p>A video explanation detailing how the program counter, instruction register, and ALU execute fetch-decode-execute cycles.</p>
+        
+        <div class="concept-details">
+          <ul>
+            <li><strong>Speaker:</strong> Student 1</li>
+            <li><strong>Topic:</strong> Machine Cycle & Opcodes</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CONCEPT / VIDEO CARD 2 -->
+      <div class="card concept-card" data-category="memory">
+        <div class="video-thumbnail-container">
+          <div class="video-placeholder">
+            <div class="play-button">▶</div>
+            <span class="video-duration">05:10</span>
+          </div>
+        </div>
+
+        <div class="concept-header">
+          <span class="badge badge-cyan">Memory</span>
+          <h3>Cache Memory Hierarchy</h3>
+        </div>
+        <p>Visualizing L1, L2, and L3 cache levels and comparing access speed against main memory (RAM).</p>
+        
+        <div class="concept-details">
+          <ul>
+            <li><strong>Speaker:</strong> Student 2</li>
+            <li><strong>Topic:</strong> Cache Hits vs. Misses</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CONCEPT / VIDEO CARD 3 -->
+      <div class="card concept-card" data-category="binary">
+        <div class="video-thumbnail-container">
+          <div class="video-placeholder">
+            <div class="play-button">▶</div>
+            <span class="video-duration">04:20</span>
+          </div>
+        </div>
+
+        <div class="concept-header">
+          <span class="badge badge-pink">Data & Binary</span>
+          <h3>Two's Complement & Binary Math</h3>
+        </div>
+        <p>Demonstration on signed integer representations and how CPUs execute binary subtraction using addition circuitry.</p>
+        
+        <div class="concept-details">
+          <ul>
+            <li><strong>Speaker:</strong> Student 3</li>
+            <li><strong>Topic:</strong> Binary Conversions & Notation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CONCEPT / VIDEO CARD 4 -->
+      <div class="card concept-card" data-category="architecture">
+        <div class="video-thumbnail-container">
+          <div class="video-placeholder">
+            <div class="play-button">▶</div>
+            <span class="video-duration">02:50</span>
+          </div>
+        </div>
+
+        <div class="concept-header">
+          <span class="badge badge-purple">Architecture</span>
+          <h3>Logic Gates & Brookshear Flip-Flop</h3>
+        </div>
+        <p>A deep dive into how digital logic gates interact to construct memory storage latch circuits.</p>
+        
+        <div class="concept-details">
+          <ul>
+            <li><strong>Speaker:</strong> Student 4</li>
+            <li><strong>Topic:</strong> Sequential Logic & Latches</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 FoC Group 4 | University of Belize. All rights reserved.</p>
+  </footer>
+
+  <script src="concepts.js"></script>
+</body>
+</html>
