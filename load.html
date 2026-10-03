@@ -18,10 +18,7 @@
     
     <!-- Left Navigation -->
     <nav>
-      <a href="#">Hex Converter</a>
-      <a href="#">ASCII Text</a>
-      <a href="#">Unicode Text</a>
-      <a href="index.html" class="active">CPU Simulator</a>
+      <a href="project.html">Go Back</a>
     </nav>
 
     <!-- Main Content Area -->
@@ -39,12 +36,13 @@
         <!-- Instruction Buttons Panel (Left Side) -->
         <div class="instruction-buttons-panel">
           <button class="inst-btn active" data-step="0">INPUT / RESET</button>
-          <button class="inst-btn" data-step="1">LOAD R0 0</button>
-          <button class="inst-btn" data-step="2">LOAD R1 1</button>
-          <button class="inst-btn" data-step="3">ADD R2 R0 R1</button>
-          <button class="inst-btn" data-step="4">SUB R3 R2 R1</button>
-          <button class="inst-btn" data-step="5">STORE 8 R3</button>
-          <button class="inst-btn" data-step="6">HALT</button>
+          <button class="inst-btn" data-step="1">MEMORY SETUP</button>
+          <button class="inst-btn" data-step="2">LOAD R0 0</button>
+          <button class="inst-btn" data-step="3">LOAD R1 1</button>
+          <button class="inst-btn" data-step="4">ADD R2 R0 R1</button>
+          <button class="inst-btn" data-step="5">SUB R3 R2 R1</button>
+          <button class="inst-btn" data-step="6">STORE 8 R3</button>
+          <button class="inst-btn" data-step="7">HALT</button>
         </div>
 
         <!-- Right Side: Diagram + Controls -->
@@ -59,7 +57,7 @@
             </div>
             <div id="stepCounter" class="step-indicator">Step 1 of 8</div>
             <div id="statusBox" class="converter-result">
-              Initial State: CPU and Main Memory cleared.
+              Step 1: Initial state. Main Memory and Register Bank are empty[cite: 16].
             </div>
           </div>
 
@@ -140,38 +138,38 @@
       const cpuDiagram = document.getElementById("cpuDiagram");
       const instButtons = document.querySelectorAll(".inst-btn");
 
-      // State configurations mapping directly to cpu0.png through cpu7.png
+      // Removed "images/" prefix so it loads files directly from the main folder
       const steps = [
         {
-          image: "images/cpu0.png",
+          image: "cpu0.png",
           description: "Step 1: Initial state. Main Memory and Register Bank are empty[cite: 16]."
         },
         {
-          image: "images/cpu1.png",
+          image: "cpu1.png",
           description: "Step 2: Values 2 and 3 are populated into Main Memory addresses 0 and 1[cite: 17]."
         },
         {
-          image: "images/cpu2.png",
+          image: "cpu2.png",
           description: "Step 3: 'LOAD R0 0' instruction loaded into Memory at address 2[cite: 18]."
         },
         {
-          image: "images/cpu3.png",
+          image: "cpu3.png",
           description: "Step 4: Executed 'LOAD R0 0'. Value 2 from Memory address 0 is loaded into Register R0[cite: 19]."
         },
         {
-          image: "images/cpu4.png",
+          image: "cpu4.png",
           description: "Step 5: Executed 'LOAD R1 1'. Value 3 from Memory address 1 is loaded into Register R1[cite: 20]."
         },
         {
-          image: "images/cpu5.png",
+          image: "cpu5.png",
           description: "Step 6: Executed 'ADD R2 R0 R1'. ALU adds R0 (2) and R1 (3), storing result 5 in Register R2[cite: 21]."
         },
         {
-          image: "images/cpu6.png",
+          image: "cpu6.png",
           description: "Step 7: Executed 'SUB R3 R2 R1'. ALU subtracts R1 (3) from R2 (5), storing result 2 in Register R3[cite: 22]."
         },
         {
-          image: "images/cpu7.png",
+          image: "cpu7.png",
           description: "Step 8: Executed 'STORE 8 R3' and 'HALT'. Value 2 from R3 is stored into Memory address 8 and execution halts[cite: 23]."
         }
       ];
