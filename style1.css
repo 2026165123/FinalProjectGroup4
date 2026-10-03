@@ -1,0 +1,262 @@
+/* Reset & Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #111111;
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    height: 110px;
+    background-color: #C49DC4;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header h1 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Container & Navigation */
+.container {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - 171px);
+}
+
+nav {
+    width: 220px;
+    flex: 0 0 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 17px;
+    background-color: #ffffff;
+}
+
+nav a {
+    color: #000000;
+    text-decoration: none;
+    background-color: #C49DC4;
+    font-size: 18px;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    display: block;
+    border-radius: 4px;
+}
+
+nav a:hover,
+nav a.active {
+    text-decoration: underline;
+    background-color: #b081b0;
+    color: #ffffff;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    max-width: 950px;
+    background-color: #DEC3DE;
+    padding: 25px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.animation-section {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.animation-section h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.animation-section p {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Simulator Workspace Flex Layout */
+.simulator-workspace {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+/* Left Assembly Action Buttons */
+.instruction-buttons-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 160px;
+    flex: 0 0 160px;
+}
+
+.inst-btn {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 10px 8px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 2px 2px 0px #000;
+}
+
+.inst-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.inst-btn.active {
+    background-color: #b081b0;
+    color: #ffffff;
+    border-color: #000;
+}
+
+/* Right Section: Controls & Image Display */
+.diagram-and-controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.controls-panel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.gate-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.gate-buttons button {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.gate-buttons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.gate-buttons button:hover:not(:disabled) {
+    background-color: #f0f0f0;
+}
+
+.step-indicator {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.converter-result {
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #ffffff;
+    padding: 8px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Image Container */
+.image-viewer-container {
+    width: 100%;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-viewer-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Reference Table */
+.instruction-table-container {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.instruction-table-container h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.ref-table th, .ref-table td {
+    border: 1px solid #888;
+    padding: 6px;
+    text-align: left;
+}
+
+.ref-table th {
+    background-color: #C49DC4;
+    color: #ffffff;
+}
+
+/* Right Spacer & Footer */
+.right-space {
+    width: 220px;
+    flex: 0 0 220px;
+    background-color: #ffffff;
+}
+
+footer {
+    height: 61px;
+    background-color: #C49DC4;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+}
+
+footer p {
+    font-size: 14px;
+}
