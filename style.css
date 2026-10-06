@@ -588,6 +588,12 @@ body {
   border: 1px solid rgba(72, 202, 228, 0.3);
 }
 
+.video-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Responsive embedded HTML5 video or iframe (for when videos are ready) */
 .video-embed {
   width: 100%;
